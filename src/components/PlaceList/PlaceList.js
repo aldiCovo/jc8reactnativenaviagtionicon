@@ -7,7 +7,7 @@ const PlaceList = props => {
 
     return (
         <FlatList // Komponen yg dikasih input berupa array of objek yang akan disusun d scren ke bawah
-        style = {styles.listContainer}
+            style = {styles.listContainer}
             data = {props.places} //  [{key: 0, value: 'JKT'}] array yang akan disusun seperti caranya dot map
             renderItem = {(info) => { // masing2 arry akan diwakilkan dengan info
                 return (
