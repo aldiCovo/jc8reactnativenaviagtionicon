@@ -3,29 +3,51 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 const startTabs = () => {
     Promise.all([
-        Icon.getImageSource('md-map', 30), // proses asyncronus 
-        Icon.getImageSource('ios-share-alt', 30)
+        Icon.getImageSource('md-map', 30),
+        Icon.getImageSource('ios-share-alt', 30),
+        Icon.getImageSource('ios-menu', 30),
     ]).then(sources => {
-        Navigation.startTabBasedApp({ // Isinya array yang mempunyai beberapa objek
+        Navigation.startTabBasedApp({
             tabs: [
                 {
-                    screen: 'jc8reactnative.FindPlaceScreen', // screen harus sudah di daftarkan di App
-                    label: 'Find Place', // tulisan yang dia atas screen
-                    title: 'Find Place', 
-                    icon: sources[0] // biar keluar gambar
+                    screen: 'jc8reactnative.FindPlaceScreen',
+                    label: 'Find Place',
+                    title: 'Find Place',
+                    icon: sources[0],
+                    navigatorButtons: {
+                        leftButtons: [
+                            {
+                                icon: sources[2],
+                                title: 'Menu',
+                                id: 'sideDrawerToggle'
+                            }
+                        ]
+                    }
                 },
                 {
-                    screen: 'jc8reactnative.SharePlaceScreen', // screen harus sudah di daftarkan di App
-                    label: 'Share Place', // tulisan yang dia atas screen
+                    screen: 'jc8reactnative.SharePlaceScreen',
+                    label: 'Share Place',
                     title: 'Share Place',
-                    icon: sources[1] // biar keluar gambar
+                    icon: sources[1],
+                    navigatorButtons: {
+                        leftButtons: [
+                            {
+                                icon: sources[2],
+                                title: 'Menu',
+                                id: 'sideDrawerToggle'
+                            }
+                        ]
+                    }
                 },
-            ]
+            ],
+            drawer: {
+                left: {
+                    screen: 'jc8reactnative.SideDrawerScreen',
+                    
+                }
+            }
         })
     })
-
-    
-    
 }
 
 export default startTabs
